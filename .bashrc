@@ -1,3 +1,6 @@
+export GEMINI_API_KEY="AIzaSyBD3XkiaTo2x8P2sEVZWchXgkgCBUSUFNA"
+export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
+
 # All the default Omarchy aliases and functions
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
@@ -30,8 +33,20 @@ alias backup='sh ~/backup.sh'
 
 alias cmd='cd ~/.config/ghostty/ && nvim config'
 alias atv='source .venv/bin/activate'
+alias ai-instructions='echo -e "# AI Instructions\n\nAlways write code and documentation in English.\nDo not include comments in the code unless explicitly requested." > ai-instructions.md'
+alias walkercss='cd ~/.config/omarchy/themes/matte-black && nvim walker.css'
+alias windows='cd ~/.local/share/omarchy/default/hypr/ && nvim windows.conf'
+alias screensaver='cd ~/.config/omarchy/branding && nvim screensaver.txt'
+alias logo='cd /usr/share/plymouth/themes/omarchy'
+alias p='cd ~/Projects/'
 
-#
+alias django='python manage.py runserver'
+alias server='ssh dio@192.168.10.4'
+
+alias conventions='cat ~/notes/conventional-commits.txt'
+alias rmcommit='git reset --soft HEAD~1'
+
+
 # Use VSCode instead of neovim as your default editor
 # export EDITOR="code"
 #
@@ -53,28 +68,20 @@ commit() {
     git commit -m "$*"
 }
 
-dev() {
-    workspace1 && workspace2 && workspace5
-    exit
-}
-
-workspace1() {
-    hyprctl dispatch workspace 1
-    exec "ghostty --directory ~/Projects"
-}
-
-workspace2() {
-    hyprctl dispatch workspace 2
-    nohup omarchy-launch-webapp "https://github.com" &&  brave
-}
-
-workspace5() {
-    hyprctl dispatch workspace 5
-    nohup omarchy-launch-webapp "https://gemini.google.com/app?hl=en" && spotify
-}
-
 cdd() {
     cd "$@" && 
     echo "Just a sec..."
     code . & disown
 }
+
+nb() {
+    if [ -z "$*" ]; then
+      echo "Write a message :)"
+        return 1
+    fi
+
+    git branch "$*" && git switch "$*"
+}
+
+
+source /home/diogo/.config/broot/launcher/bash/br
