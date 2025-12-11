@@ -5,10 +5,6 @@ export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
 
-# Add your own exports, aliases, and functions here.
-#
-# Make an alias for invoking commands you use constantly
-# alias p='python'
 alias branch='git branch'
 alias keybinds='cd ~/.config/hypr && nvim bindings.conf'
 alias bashrc='cd ~/ && nvim .bashrc'
@@ -17,7 +13,6 @@ alias mine='java -jar ~/Games/TLauncher.jar'
 alias lock='faillock --reset'
 alias waybarcolors='cd ~/.config/omarchy/current/theme && nvim waybar.css'
 alias looknfeel='cd ~/.config/hypr && nvim looknfeel.conf'
-
 
 alias eyes='cat ~/ascii_stickers/eyes.txt'
 alias demon='cat ~/ascii_stickers/demon.txt'
@@ -47,12 +42,8 @@ alias conventions='cat ~/notes/conventional-commits.txt'
 alias rmcommit='git reset --soft HEAD~1'
 
 
-# Use VSCode instead of neovim as your default editor
 # export EDITOR="code"
-#
-# Set a custom prompt with the directory revealed (alternatively use https://starship.rs)
-# PS1="\W \[\e]0;\w\a\]$PS1"
-# Mostrar branch Git no prompt
+
 unset PROMPT_COMMAND
 parse_git_branch() {
   git branch 2>/dev/null | grep '*' | sed 's/* //'
